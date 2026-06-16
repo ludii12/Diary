@@ -1,0 +1,115 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.7;
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: #FAF6F0; /* 保持经典的温润纸张底色 */
+  color: #2D4A3E;
+}
+
+/* 溪谷微风质感的隐形滚动条 */
+::-webkit-scrollbar {
+  width: 5px;
+  height: 5px;
+}
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+::-webkit-scrollbar-thumb {
+  background: rgba(139, 157, 131, 0.3);
+  border-radius: 10px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: rgba(110, 130, 104, 0.5);
+}
+
+/* 朦胧雅致的 Markdown 样式 */
+.markdown-body {
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.85;
+  color: #2D4A3E;
+  font-size: 0.95rem;
+}
+.markdown-body h1, .markdown-body h2, .markdown-body h3 {
+  font-family: 'Noto Serif SC', serif;
+  font-weight: 600;
+  color: #1b2d26;
+  margin-top: 1.6em;
+  margin-bottom: 0.6em;
+  letter-spacing: 0.01em;
+}
+.markdown-body h1 { font-size: 1.6rem; }
+.markdown-body h2 { font-size: 1.35rem; }
+.markdown-body h3 { font-size: 1.15rem; }
+.markdown-body p { margin-bottom: 1.2em; text-align: justify; }
+.markdown-body ul, .markdown-body ol { padding-left: 1.5em; margin-bottom: 1.2em; }
+
+.markdown-body blockquote {
+  border-left: 3px solid #b8d1c1;
+  padding-left: 1em;
+  margin: 1.2em 0;
+  color: #5e937a;
+  font-style: normal;
+}
+.markdown-body code {
+  background: rgba(240, 232, 216, 0.6);
+  padding: 0.2em 0.4em;
+  border-radius: 6px;
+  font-size: 0.85em;
+}
+.markdown-body pre {
+  background: #243c32;
+  color: #FFFDF7;
+  padding: 1.2em;
+  border-radius: 16px;
+  overflow-x: auto;
+  margin-bottom: 1.2em;
+}
+.markdown-body pre code {
+  background: none;
+  padding: 0;
+  color: inherit;
+}
+.markdown-body img, .markdown-body video {
+  max-width: 100%;
+  border-radius: 20px;
+  margin: 20px 0;
+  box-shadow: 0 4px 16px -4px rgba(45, 74, 62, 0.08);
+}
+
+/* 溪谷风无界编辑器 */
+.diary-editor {
+  resize: none;
+  outline: none;
+  font-family: 'Noto Sans SC', sans-serif;
+  line-height: 1.85;
+  caret-color: #5e937a;
+}
+.diary-editor::placeholder {
+  color: #A8B89E;
+  opacity: 0.5;
+}
+
+/* 极其丝滑的柔化淡入 */
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(6px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.animate-fadeIn {
+  animation: fadeIn 0.4s cubic-bezier(0.215, 0.610, 0.355, 1) forwards;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
+}
+.animate-pulse-dot {
+  animation: pulse-dot 2s ease-in-out infinite;
+}
