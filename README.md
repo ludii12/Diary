@@ -180,7 +180,7 @@ CREATE INDEX IF NOT EXISTS idx_diaries_updated_at ON diaries(updated_at);
 
 点页面底部 **Save and Deploy**。等待约 1-2 分钟。
 
-部署成功后你会得到一个地址：`https://moji-diary.pages.dev`
+部署成功后你会得到一个地址
 
 🎉 **部署完成！打开这个地址就能用了。**
 
