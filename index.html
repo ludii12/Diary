@@ -2,9 +2,20 @@
 <html lang="zh-CN">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/svg+xml" href="/rj.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>日记</title>
+    <script>
+      // 电脑端整体放大 110%（手机/平板不放大）
+      (function() {
+        var w = window.innerWidth;
+        var isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0;
+        // 屏幕宽 ≥ 1024px 且不是触摸设备 = 电脑端
+        if (w >= 1024 && !isTouch) {
+          document.documentElement.style.zoom = '1.1';
+        }
+      })();
+    </script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;500;700&family=Noto+Serif+SC:wght@400;600;700&display=swap" rel="stylesheet">

@@ -27,7 +27,7 @@ export default function DiaryDetail() {
   return (
     <div className="min-h-screen bg-warm-100">
       <header className="sticky top-0 z-10 bg-warm-100/60 backdrop-blur-xl border-b border-warm-200/30">
-        <div className="max-w-2xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-2xl md:max-w-[740px] mx-auto px-6 md:px-12 py-3 flex items-center justify-between">
           <button onClick={() => navigate('/')} className="flex items-center gap-1.5 text-sage-400 hover:text-forest-600 text-sm"><ArrowLeft size={18} /><span>返回</span></button>
           <div className="flex items-center gap-3">
             <button onClick={() => navigate(`/write/${diary.id}`)} className="flex items-center gap-1 text-sage-400 hover:text-forest-600 text-xs font-medium transition-colors"><PenLine size={13} /><span>修改</span></button>
@@ -37,7 +37,7 @@ export default function DiaryDetail() {
         </div>
       </header>
 
-      <main className="max-w-2xl mx-auto px-6 py-8 animate-fadeIn">
+      <main className="max-w-2xl md:max-w-[740px] mx-auto px-6 md:px-12 py-8 animate-fadeIn">
         <article className="bg-white/80 backdrop-blur-xl rounded-3xl p-8 shadow-[0_4px_20px_-4px_rgba(45,74,62,0.04)] border border-warm-200/30">
           <div className="flex items-center gap-3 mb-4">
             <span className="text-xs text-sage-400 font-medium">{format(new Date(diary.date), 'yyyy年 M月d日 EEEE', { locale: zhCN })}</span>

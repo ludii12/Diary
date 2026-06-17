@@ -75,13 +75,33 @@ export default function DiaryEdit() {
     if (item.url.startsWith('blob:')) URL.revokeObjectURL(item.url);
   }, [media]);
 
+  // 粘贴图片/视频
+  const handlePaste = useCallback((e: React.ClipboardEvent) => {
+    const items = e.clipboardData?.items;
+    if (!items) return;
+    const files: { file: File; type: 'image' | 'video' }[] = [];
+    for (let i = 0; i < items.length; i++) {
+      const it = items[i];
+      if (it.kind === 'file') {
+        const f = it.getAsFile();
+        if (!f) continue;
+        if (it.type.startsWith('image/')) files.push({ file: f, type: 'image' });
+        else if (it.type.startsWith('video/')) files.push({ file: f, type: 'video' });
+      }
+    }
+    if (files.length > 0) {
+      e.preventDefault();
+      files.forEach((f) => uploadFile(f.file, f.type));
+    }
+  }, [uploadFile]);
+
   return (
     <div className="min-h-screen bg-warm-100 flex flex-col">
       <input ref={imgRef} type="file" accept="image/jpeg,image/png,image/gif,image/webp" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadFile(f, 'image'); e.target.value = ''; }} />
       <input ref={vidRef} type="file" accept="video/mp4,video/webm,video/ogg" className="hidden" onChange={(e) => { const f = e.target.files?.[0]; if (f) uploadFile(f, 'video'); e.target.value = ''; }} />
       
       <header className="sticky top-0 z-10 bg-warm-100/60 backdrop-blur-xl border-b border-warm-200/30">
-        <div className="max-w-3xl mx-auto px-6 py-3 flex items-center justify-between">
+        <div className="max-w-3xl md:max-w-[845px] mx-auto px-6 md:px-12 py-3 flex items-center justify-between">
           <button onClick={() => navigate('/')} className="flex items-center gap-1 text-sage-400 hover:text-forest-600 text-xs transition-colors"><ArrowLeft size={16} /><span>离开</span></button>
           <div className="flex items-center gap-2">
             <SaveIndicator />
@@ -93,7 +113,7 @@ export default function DiaryEdit() {
         </div>
       </header>
 
-      <main className="flex-1 max-w-3xl mx-auto w-full px-6 py-8">
+      <main className="flex-1 max-w-3xl md:max-w-[845px] mx-auto w-full px-6 md:px-12 py-8">
         <div className="mb-4"><span className="text-[11px] text-sage-400 font-medium tracking-wide">{format(new Date(dateStr), 'yyyy年 M月d日 EEEE', { locale: zhCN })}</span></div>
         <input type="text" value={title} onChange={(e) => setTitle(e.target.value)} placeholder="给日记起个标题..." className="w-full text-xl font-serif font-bold text-forest-700 bg-transparent placeholder:text-sage-300 focus:outline-none mb-6 tracking-wide" />
         <div className="mb-6"><MoodWeatherSelector mood={mood} weather={weather} onMoodChange={setMood} onWeatherChange={setWeather} /></div>
@@ -112,7 +132,7 @@ export default function DiaryEdit() {
         {preview ? (
           <div className="bg-white/80 backdrop-blur-xl rounded-3xl p-7 border border-warm-200/30 min-h-[420px] shadow-[0_4px_20px_-4px_rgba(45,74,62,0.04)]"><MarkdownViewer content={content} media={media} /></div>
         ) : (
-          <textarea ref={taRef} value={content} onChange={(e) => setContent(e.target.value)} placeholder={"今天发生了什么？支持 Markdown 格式书写...\n\n点击上方 📷 插入图片，🎬 插入视频"} className="diary-editor w-full min-h-[420px] bg-white/80 backdrop-blur-xl rounded-3xl p-7 border border-warm-200/30 text-forest-700 text-sm transition-all shadow-[0_4px_20px_-4px_rgba(45,74,62,0.04)]" />
+          <textarea ref={taRef} value={content} onChange={(e) => setContent(e.target.value)} onPaste={handlePaste} placeholder={"今天发生了什么？支持 Markdown 格式书写...\n\n点击上方 📷 插入图片，🎬 插入视频\n也可以直接 Ctrl+V 粘贴图片/视频"} className="diary-editor w-full min-h-[420px] bg-white/80 backdrop-blur-xl rounded-3xl p-7 border border-warm-200/30 text-forest-700 text-sm transition-all shadow-[0_4px_20px_-4px_rgba(45,74,62,0.04)]" />
         )}
       </main>
     </div>

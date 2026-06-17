@@ -27,7 +27,7 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-warm-100">
       <header className="sticky top-0 z-10 bg-warm-100/60 backdrop-blur-xl border-b border-warm-200/30">
-        <div className="max-w-5xl mx-auto px-6 py-4 flex items-center justify-between">
+        <div className="max-w-5xl md:max-w-[1130px] mx-auto px-6 md:px-12 py-4 flex items-center justify-between">
           <div className="flex items-center">
             {/* 已彻底移除原有的 Logo 图标 */}
             <h1 className="font-serif text-lg font-bold tracking-widest text-forest-700">日记</h1>
@@ -42,7 +42,7 @@ export default function Home() {
         </div>
       </header>
 
-      <main className="max-w-5xl mx-auto px-6 py-8">
+      <main className="max-w-5xl md:max-w-[1130px] mx-auto px-6 md:px-12 py-8">
         <div className="flex flex-col lg:flex-row gap-8">
           <aside className="lg:w-72 flex-shrink-0 space-y-4">
             <Calendar onSelectDate={setSd} selectedDate={sd} />
