@@ -1,6 +1,6 @@
 # 日记 - 纯浏览器部署教程
 
-如需要上锁，可使用https://github.com/ludii12/suo进行一个简单上锁
+如需要上锁，可使用https://github.com/ludii12/suo 进行一个简单上锁
 
 全程不需要终端，所有操作在浏览器完成。
 
